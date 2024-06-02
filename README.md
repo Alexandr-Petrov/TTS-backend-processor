@@ -18,10 +18,12 @@ docker run -it -p 5002:5002 synesthesiam/mozilla-tts
 ```
 
 Run the project
-Send a POST request to the server with the text you want to convert to speec
 
+Send a POST request to the server with the text you want to convert to speech. Here's an example using curl:
+
+```bash
 curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"how to boil eggs\"}" http://localhost:8080/tts
-
+```
 The text you send in the POST request will be sent to the OpenAI API, which will generate a response. This response will then be converted to speech by the tts server.  The speech file would be returned by the request and could be saved locally.  Enjoy!
 
 ## Next steps
