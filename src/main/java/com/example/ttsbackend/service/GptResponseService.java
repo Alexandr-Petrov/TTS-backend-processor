@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class ResponseService {
+public class GptResponseService {
     private static final String CHAT_GPT_API_URL = "https://api.openai.com/v1/chat/completions";
 
     public String generateResponse(TextPayload payload) {
@@ -44,12 +44,13 @@ public class ResponseService {
 
             ObjectNode systemMessage = messages.addObject();
             systemMessage.put("role", "system");
-            systemMessage.put("content", "You are samurai warrior, you are tasked with writing with a haikus about anything those seeking advice asking about.");
+            systemMessage.put("content", "You are samurai warrior, you are tasked with writing with a haikus about anything those seeking advice are asking about.");
 
             ObjectNode userMessage = messages.addObject();
             userMessage.put("role", "user");
             userMessage.put("content", text);
 
+            // Implement the logger message
             return mapper.writeValueAsString(requestBody);
         } catch (Exception e) {
             throw new RuntimeException("Error creating request body", e);

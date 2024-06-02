@@ -1,31 +1,32 @@
 package com.example.ttsbackend.controllers;
 
 import com.example.ttsbackend.models.TextPayload;
-import com.example.ttsbackend.service.ResponseService;
+import com.example.ttsbackend.service.GptResponseService;
 import com.example.ttsbackend.service.TtsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TtsController {
+public class TtsResponseController {
     private final TtsService ttsService;
-    private final ResponseService responseService;
+    private final GptResponseService gptResponseService;
 
     @Autowired
-    public TtsController(TtsService ttsService, ResponseService responseService) {
+    public TtsResponseController(TtsService ttsService, GptResponseService gptResponseService) {
         this.ttsService = ttsService;
-        this.responseService = responseService;
+        this.gptResponseService = gptResponseService;
     }
 
-    @PostMapping("/tts")
-    public String convertTextToSpeech(@RequestBody TextPayload payload) {
+    @PostMapping("/respond/tts")
+    public ResponseEntity<byte[]> convertTextToSpeech(@RequestBody TextPayload payload) {
         // Generate response from ChatGPT
-        String response = responseService.generateResponse(payload);
+        String response = gptResponseService.generateResponse(payload);
 
         // Parse the response to extract the content
         ObjectMapper mapper = new ObjectMapper();
