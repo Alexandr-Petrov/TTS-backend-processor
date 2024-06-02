@@ -3,6 +3,8 @@
 This is a Java Spring Boot project that uses the OpenAI API to generate responses to user messages, which are then converted to speech by a tts server and returned to the user as an audio file.
 The project is a backend service that can be integrated with any chatbot to provide voice responses to user messages.
 
+Currently it's configured to respond as a Samurai in Haiku format, but this can be easily changed by modifying the `ChatGPTService` class.
+
 ## How to run it
 
 1. Clone the repository
