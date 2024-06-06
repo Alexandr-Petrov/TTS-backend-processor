@@ -3,7 +3,7 @@
 This is a Java Spring Boot project that uses the OpenAI API to generate responses to user messages, which are then converted to speech by a tts server and returned to the user as an audio file.
 The project is a backend service that can be integrated with any chatbot to provide voice responses to user messages.
 
-Currently it's configured to respond as a Samurai in Haiku format, but this can be easily changed by modifying the `ChatGPTService` class.
+Currently it's configured to respond as a Samurai in Haiku format, but this can be easily changed by modifying the `GptResponseService` class.
 
 ## How to run it
 
@@ -24,7 +24,7 @@ Run the project
 Send a POST request to the server with the text you want to convert to speech. Here's an example using curl:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"how to boil eggs\"}" http://localhost:8080/tts
+curl -X POST -H "Content-Type: application/json" -d "{\"text\":\"Comment on the mastery of cheesemaking\"}" http://localhost:8080/respond/tts -o response.wav
 ```
 The text you send in the POST request will be sent to the OpenAI API, which will generate a response. This response will then be converted to speech by the tts server.  The speech file would be returned by the request and could be saved locally.  Enjoy!
 
